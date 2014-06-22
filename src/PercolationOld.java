@@ -1,7 +1,7 @@
 
 
 
-public class Percolation {
+public class PercolationOld {
    
     private static final int BLOCKED = 0;
     private static final int OPEN = 1;
@@ -21,11 +21,10 @@ public class Percolation {
         return((x-1)*this.N + y);
     }
    
-    public Percolation(int N) {
+    public PercolationOld(int N) {
         int i, j;
        
         this.N = N;
-        // Grid iz N+1 x N+1 so that we can create a virtual node.
         grid = new int [N+1][N+1];
         for(i = 1; i < N; i++){
             for(j = 1; j < N-1; j++){
@@ -75,30 +74,18 @@ public class Percolation {
         }
     }
 
-    /*
-     * Each site is either open or blocked.
-     */
     public boolean isOpen(int i, int j) {
         testRange(i);
         testRange(j);
         return(grid[i][j] == OPEN);
     }
    
-    /*
-     * A full site is an open site that can be connected to an open site in the 
-     * top row via a chain of neighboring (left, right, up, down) open sites.
-     */
     public boolean isFull(int i, int j) {
         testRange(i);
         testRange(j);
         return(fullQUF.connected(0, xyTo1D(i, j)));
     }
    
-    /*
-     * We say the system percolates if there is a full site in the bottom row. 
-     * In other words, a system percolates if we fill all open sites connected 
-     * to the top row and that process fills some open site on the bottom row.
-     */
     public boolean percolates() {
         int nSqrd;
         nSqrd = this.N*this.N;

@@ -54,8 +54,14 @@ public class PercolationStats {
         return(mean() +((1.96*stddev())/java.lang.Math.sqrt(this.T)));
     }
    
+    /*
+     * main() method that takes two command-line arguments N and T, 
+     * performs T independent computational experiments on an N-by-N grid, 
+     * and prints out the mean, standard deviation, and the 95% confidence 
+     * interval for the percolation threshold.
+     */
     public static void main(String[] args) {
-        int N = Integer.parseInt(args[0]);
+        int N = Integer.parseInt(args[0]); 
         int T = Integer.parseInt(args[1]);
        
         PercolationStats percStats = new PercolationStats(N, T);
